@@ -9,13 +9,18 @@ dictionary = {'AUG': 'Methionine',
 
 
 def proteins(strand):
-    codon_list = [strand[i:i+3] for i in range(0, len(strand), 3)]
+    codon_group = [strand[i:i+3] for i in range(0, len(strand), 3)]
     result = []
 
-    for codon in codon_list:
-        if dictionary.get(codon) == "STOP":
-            return result
-
-        result.append(dictionary.get(codon))
+    for codons in codon_group:
+        if dictionary.get(codons) is not None:
+            result.append(dictionary.get(codons))
 
     return result
+
+def find_codon(codon):
+    for kvp in dictionary:
+        if type(kvp) is tuple:
+            for item in kvp:
+                if codon == item:
+                    return kvp.
