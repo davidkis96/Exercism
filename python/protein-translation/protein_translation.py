@@ -13,14 +13,20 @@ def proteins(strand):
     result = []
 
     for codons in codon_group:
-        if dictionary.get(codons) is not None:
-            result.append(dictionary.get(codons))
+        codon = find_codon(codons)
+        if codon == 'STOP':
+            return result
+        else:
+            result.append(codon)
 
     return result
 
+
 def find_codon(codon):
-    for kvp in dictionary:
-        if type(kvp) is tuple:
-            for item in kvp:
-                if codon == item:
-                    return kvp.
+    for k in dictionary.keys():
+        if type(k) is str:
+            if codon == k:
+                return dictionary[k]
+        if type(k) is tuple:
+            if codon in k:
+                return dictionary[k]
